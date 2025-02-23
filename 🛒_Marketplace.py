@@ -10,7 +10,7 @@ st.set_page_config(
 # sidebar helper
 st.sidebar.success("Select a page above")
 #product name variable
-productName = "ConVeni"
+productName = "Escrow AI"
 
 ############# SESSION STATE #############
 
@@ -25,7 +25,7 @@ if 'key' not in st.session_state:
 
 
 ############# WELCOME #############
-st.subheader(f"Welcome to {productName}! 🏪")
+st.subheader(f"Welcome to {productName}! 🤖")
 
 st.write(f"{productName} (convenience contracts) utilize artificial intelligence and blockchain technologies to promote fairer contracts between freelancers and their clients. **With our product users:**")
 

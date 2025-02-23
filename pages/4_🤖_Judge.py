@@ -1,5 +1,7 @@
 import streamlit as st
 
+from utils import decode_base64_to_bytes
+
 st.set_page_config(
     page_title="Judge",
     page_icon="🤖",
@@ -60,5 +62,8 @@ st.subheader("Determination")
 # scenario (A)
 st.write("Your contract has been executed, and your coins have been exchanged. 🤝")
 
-# scenario (B)
-# st.write("Your contract has been cancelled, and your coins have been refunded. 🔁")
+if st.session_state["freelancer_photo"]:
+    st.image(st.session_state["freelancer_photo"], caption="Uploaded Image")
+    
+if st.session_state["wedding_evaluation"]:
+    st.json(st.session_state["wedding_evaluation"])
