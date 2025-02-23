@@ -1,8 +1,6 @@
 import streamlit as st
 from deepface import DeepFace
 
-from app.utils import encode_bytes_to_base64
-
 verify_url = "https://mostafa.duck-alpheratz.ts.net/verify"
 
 st.set_page_config(
@@ -35,14 +33,23 @@ if uploaded_file is not None:
 if st.session_state[photo_key]:
     st.image(st.session_state[photo_key], caption="Uploaded Image")
 
+
     # Provide an 'Verify' button for each image.
+
     if st.button("Verify Matching"):
         # Encode the image.
+        # print(st.session_state["customer_photo"])
+        # print(st.session_state["freelancer_photo"])
+        
+        with open("pages/freelancer_photo.jpg", "wb") as f:
+            f.write(st.session_state["freelancer_photo"]) 
 
-        st.session_state["user_verification"]  = DeepFace.verify(img1_path = st.session_state["customer_photo"],
-                                                                 img2_path = st.session_state["freelancer_photo"], 
+        with open("pages/customer_photo.jpg", "wb") as f:
+            f.write(st.session_state["customer_photo"])     
+        st.session_state["user_verification"]  = DeepFace.verify(img1_path = "C:\\Users\\uditp\\MenteruNewTask\\Solana_multiSig_contract\\app\\pages\\customer_photo.jpg",
+                                                                 img2_path = "C:\\Users\\uditp\\MenteruNewTask\\Solana_multiSig_contract\\app\\pages\\freelancer_photo.jpg", 
                                                                  model_name='Facenet512',
-                                                                 distance_metric='euclidean_l2')
+                                                                 distance_metric='cosine')
 
         
         st.json(st.session_state["user_verification"])
